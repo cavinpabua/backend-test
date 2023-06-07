@@ -36,6 +36,10 @@ import { AuthSurvivorType } from '../models/auth-survivor.model';
 export class SurvivorsController {
   constructor(private readonly survivorsService: SurvivorsService) {}
 
+  /*
+   * Register a survivor
+   * @param createSurvivorDto
+   */
   @ApiOperation({ summary: 'register a survivor' })
   @ApiResponse({
     status: 201,
@@ -47,6 +51,10 @@ export class SurvivorsController {
     return this.survivorsService.create(createSurvivorDto);
   }
 
+  /*
+   * Create a survivor using admin role
+   * @param createAdminDto
+   */
   @ApiOperation({ summary: 'create a survivor using admin role' })
   @ApiResponse({
     status: 201,
@@ -55,10 +63,13 @@ export class SurvivorsController {
   @ApiBearerAuth('access-token') // Needs token to access the endpoint
   @Roles(Role.ADMIN) // makes the endpoint accessible only by the admin
   @Post('admin')
-  createAdmin(@Body() creatAdminDto: CreateAdminDto) {
-    return this.survivorsService.create(creatAdminDto);
+  createAdmin(@Body() createAdminDto: CreateAdminDto) {
+    return this.survivorsService.create(createAdminDto);
   }
 
+  /*
+   * Fetch a survivor by id
+   */
   @ApiOperation({ summary: 'Fetch all survivor' })
   @ApiResponse({
     status: 200,
@@ -72,6 +83,9 @@ export class SurvivorsController {
     return this.survivorsService.findAll();
   }
 
+  /*
+   * Get healthy survivor count in the past 30 days
+   */
   @ApiOperation({ summary: 'Get Healthy Survivor Count in the Past 30 Days' })
   @ApiResponse({
     status: 200,
@@ -84,6 +98,9 @@ export class SurvivorsController {
     return this.survivorsService.getHealthySurvivors();
   }
 
+  /*
+   * Get infected survivor count in the past 30 days
+   */
   @ApiOperation({ summary: 'Get Infected Survivor Count in the Past 30 Days' })
   @ApiResponse({
     status: 200,
@@ -96,6 +113,10 @@ export class SurvivorsController {
     return this.survivorsService.getInfectedSurvivors();
   }
 
+  /*
+   * Get own data
+   * @param auth - AuthSurvivorType
+   */
   @ApiOperation({ summary: 'Get Own Data' })
   @ApiBearerAuth('access-token')
   @ApiResponse({
@@ -108,6 +129,10 @@ export class SurvivorsController {
     return this.survivorsService.findOwn(auth.id);
   }
 
+  /*
+   * Fetch a specific survivor
+   * @param id - number
+   */
   @ApiOperation({ summary: 'Fetch a specific survivor' })
   @ApiBearerAuth('access-token')
   @ApiResponse({
@@ -120,7 +145,11 @@ export class SurvivorsController {
     return this.survivorsService.findOne(id);
   }
 
-  // Admin can update any survivor
+  /*
+   * Admin can update any survivor
+   * @param id - number
+   * @param updateSurvivorDto - UpdateSurvivorDto
+   */
   @ApiOperation({ summary: 'Admin can update any survivor' })
   @ApiBearerAuth('access-token')
   @Roles(Role.ADMIN)
@@ -132,7 +161,11 @@ export class SurvivorsController {
     return this.survivorsService.update(+id, updateSurvivorDto);
   }
 
-  // Survivor can update itself only
+  /*
+   * Survivor update its own details
+   * @param auth - AuthSurvivorType
+   * @param updateSurvivorDto - UpdateSurvivorDto
+   */
   @ApiOperation({ summary: 'Survivor update its own details' })
   @ApiBearerAuth('access-token')
   @Roles(Role.SURVIVOR)
@@ -144,6 +177,10 @@ export class SurvivorsController {
     return this.survivorsService.update(auth.id, updateSurvivorDto);
   }
 
+  /*
+   * Admin can remove survivors
+   * @param id - number
+   */
   @ApiOperation({ summary: 'Admin can remove survivors' })
   @ApiBearerAuth('access-token')
   @Roles(Role.ADMIN)

@@ -30,6 +30,10 @@ import { Role } from '../../../auth/models/roles.model';
 export class TradeDetailsController {
   constructor(private readonly itemsService: TradeDetailsService) {}
 
+  /*
+   * Add Item
+   * @param addTradeDetailsDto
+   */
   @ApiOperation({ summary: 'Add Item' })
   @ApiResponse({
     status: 201,
@@ -41,6 +45,10 @@ export class TradeDetailsController {
     return this.itemsService.add(addTradeDetailsDto);
   }
 
+  /*
+   * Remove Item
+   * @param id
+   */
   @ApiOperation({ summary: 'Remove Item' })
   @ApiResponse({
     status: 201,
@@ -52,6 +60,10 @@ export class TradeDetailsController {
     return this.itemsService.remove(+id);
   }
 
+  /*
+   * Get all details from trade
+   * @param id
+   */
   @ApiOperation({ summary: 'Get all details from trade' })
   @ApiResponse({
     status: 201,

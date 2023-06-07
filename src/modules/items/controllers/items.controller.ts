@@ -32,6 +32,10 @@ import { Role } from '../../../auth/models/roles.model';
 export class ItemsController {
   constructor(private readonly itemsService: ItemsService) {}
 
+  /*
+   * Create new Item
+   * @param createItemDto
+   */
   @ApiOperation({ summary: 'Create new Item' })
   @ApiResponse({
     status: 201,
@@ -43,6 +47,10 @@ export class ItemsController {
     return this.itemsService.create(createItemDto);
   }
 
+  /*
+   * Update Item
+   * @param updateItemDto
+   */
   @ApiOperation({ summary: 'Update Item' })
   @ApiResponse({
     status: 201,
@@ -54,6 +62,9 @@ export class ItemsController {
     return this.itemsService.update(id, updateItemDto);
   }
 
+  /*
+   * Fetch All Item
+   */
   @ApiOperation({ summary: 'Fetch All Item' })
   @ApiResponse({
     status: 201,
@@ -65,6 +76,10 @@ export class ItemsController {
     return this.itemsService.findAll();
   }
 
+  /*
+   * Find Item
+   * @param id
+   */
   @ApiOperation({ summary: 'Find Item' })
   @ApiResponse({
     status: 201,
@@ -76,6 +91,10 @@ export class ItemsController {
     return this.itemsService.findOne(+id);
   }
 
+  /*
+   * Delete Item
+   * @param id
+   */
   @ApiOperation({ summary: 'Delete Item' })
   @ApiResponse({
     status: 201,

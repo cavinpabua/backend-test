@@ -4,7 +4,6 @@ import { Repository } from 'typeorm';
 import { TradeRequest } from '../entities/trade-requests.entity';
 import {
   AcceptTradeRequestDto,
-  CreateTradeRequestDto,
   CreateTradeRequestDtoWithUser,
   RejectTradeRequestDto,
 } from '../dto/trade-requests.dto';

@@ -23,9 +23,8 @@ export class LocationsController {
   constructor(private readonly locationsService: LocationsService) {}
 
   /*
-   *
+   * Add new location of a survivor
    * @param createLocationDto
-   *
    */
   @ApiOperation({ summary: 'Add new location of a survivor' })
   @ApiResponse({
@@ -38,6 +37,9 @@ export class LocationsController {
     return this.locationsService.create(createLocationDto);
   }
 
+  /*
+   * Find location of all survivors
+   */
   @ApiOperation({ summary: 'Find location of all survivors' })
   @ApiResponse({
     status: 201,
@@ -49,6 +51,10 @@ export class LocationsController {
     return this.locationsService.findAllLatestLocation();
   }
 
+  /*
+   * Fetch location history of a survivor
+   * @param id
+   */
   @ApiOperation({ summary: 'Fetch location history of a survivor' })
   @ApiResponse({
     status: 201,
@@ -56,10 +62,14 @@ export class LocationsController {
   })
   @Roles(Role.SURVIVOR, Role.ADMIN)
   @Get('history/:id')
-  findSurvivorHistoryLocations(@Param('id') id: string) {
-    return this.locationsService.findAllLocation(+id);
+  findSurvivorHistoryLocations(@Param('id') id: number) {
+    return this.locationsService.findAllLocation(id);
   }
 
+  /*
+   * Find location of a survivor
+   * @param id
+   */
   @ApiOperation({ summary: 'Find location of a survivor' })
   @ApiResponse({
     status: 201,
@@ -67,7 +77,7 @@ export class LocationsController {
   })
   @Roles(Role.SURVIVOR, Role.ADMIN)
   @Get(':id')
-  findSurvivor(@Param('id') id: string) {
-    return this.locationsService.findLatestLocation(+id);
+  findSurvivor(@Param('id') id: number) {
+    return this.locationsService.findLatestLocation(id);
   }
 }

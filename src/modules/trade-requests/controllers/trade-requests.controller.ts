@@ -26,6 +26,10 @@ import { AuthSurvivorType } from '../../../modules/survivors/models/auth-survivo
 export class TradeRequestsController {
   constructor(private readonly tradesService: TradeRequestService) {}
 
+  /*
+   * Create new trade request
+   * @param createTradeRequestDto
+   */
   @ApiOperation({ summary: 'Create new trade request' })
   @ApiResponse({
     status: 201,
@@ -37,6 +41,11 @@ export class TradeRequestsController {
     return this.tradesService.create(createTradeRequestDto);
   }
 
+  /*
+   * Accept trade request
+   * @param acceptTradeRequestDto
+   * @param survivor - Authenticated survivor
+   */
   @ApiOperation({ summary: 'Accept trade request' })
   @ApiResponse({
     status: 201,
@@ -51,6 +60,11 @@ export class TradeRequestsController {
     return this.tradesService.accept(survivor.id, acceptTradeRequestDto);
   }
 
+  /*
+   * Reject trade request
+   * @param rejectTradeRequestDto
+   * @param survivor - Authenticated survivor
+   */
   @ApiOperation({ summary: 'Reject trade request' })
   @ApiResponse({
     status: 201,
@@ -65,6 +79,10 @@ export class TradeRequestsController {
     return this.tradesService.reject(survivor.id, rejectTradeRequestDto);
   }
 
+  /*
+   * Get Trade History of User
+   * @param survivor - Authenticated survivor
+   */
   @ApiOperation({ summary: 'Get Trade History of User' })
   @ApiResponse({
     status: 201,
@@ -76,6 +94,11 @@ export class TradeRequestsController {
     return this.tradesService.findTradeHistory(survivor.id);
   }
 
+  /*
+   * Get Trade Details
+   * @param survivor - Authenticated survivor
+   * @param requestId - Trade Request Id
+   */
   @ApiOperation({ summary: 'Get Trade Details' })
   @ApiResponse({
     status: 201,
@@ -90,6 +113,10 @@ export class TradeRequestsController {
     return this.tradesService.findOne(survivor.id, requestId);
   }
 
+  /*
+   * Get  Trades of User
+   * @param survivor - Authenticated survivor
+   */
   @ApiOperation({ summary: 'Get Trades of User' })
   @ApiResponse({
     status: 201,

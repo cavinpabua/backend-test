@@ -25,6 +25,11 @@ import { AuthSurvivorType } from '../../../modules/survivors/models/auth-survivo
 export class InventoryController {
   constructor(private readonly inventoryService: InventoryService) {}
 
+  /*
+   * This is a super powerful method that can create items out of nothing
+   * It is not included in the test
+   * @param createInventoryDto
+   */
   @ApiOperation({
     summary:
       'Add an Item to a Survivor via Admin Role - This creates nothing into something - ADMIN SUPER POWERFUL',
@@ -39,9 +44,14 @@ export class InventoryController {
     return this.inventoryService.add(createInventoryDto);
   }
 
+  /*
+   * Remove an Item from a Survivor
+   * It is not included in the test
+   * @param createInventoryDto
+   */
   @ApiOperation({
     summary:
-      'Subtract an Item to a Survivor via Admin Role - ADMIN SUPER POWERFUL',
+      'Remove an Item from a Survivor via Admin Role - ADMIN SUPER POWERFUL',
   })
   @ApiResponse({
     status: 201,
@@ -53,6 +63,12 @@ export class InventoryController {
     return this.inventoryService.remove(createInventoryDto);
   }
 
+  /*
+   * User spends an Item
+   * It is not included in the test
+   * @param spendInventoryDto
+   * @param survivor - Authenticated Survivor
+   */
   @ApiOperation({
     summary: 'User spends an Item - Not included in test',
   })
@@ -69,6 +85,10 @@ export class InventoryController {
     return this.inventoryService.spend(survivor.id, spendInventoryDto);
   }
 
+  /*
+   * Get Average Resource Allocation
+   * @param id - Item Id
+   */
   @ApiOperation({
     summary: 'Average Resource Allocation',
   })
@@ -83,6 +103,10 @@ export class InventoryController {
     return this.inventoryService.averageResourceAllocation(id);
   }
 
+  /*
+   * Check inventory of Survivor
+   * @param id - Survivor Id
+   */
   @ApiOperation({
     summary: 'Check inventory of Survivor',
   })

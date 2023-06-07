@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, OneToOne } from 'typeorm';
+import { Column, Entity } from 'typeorm';
 import { DefaultEntity } from '../../../utils/entities/default.entity';
 
 @Entity('locations')
