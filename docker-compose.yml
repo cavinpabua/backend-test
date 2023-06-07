@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  postgres:
+    image: 'postgres'
+    restart: always
+    container_name: 'backend_local_postgres'
+    environment:
+      POSTGRES_DB: 'backendLocal'
+      POSTGRES_USER: 'backendLocalUser'
+      POSTGRES_PASSWORD: 'backendLocalUserPass'
+      ALLOW_IP_RANGE: '0.0.0.0/0'
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+  postgresTest:
+    image: 'postgres'
+    restart: always
+    container_name: 'backend_test_postgres'
+    environment:
+      POSTGRES_DB: 'backendTest'
+      POSTGRES_USER: 'backendTestUser'
+      POSTGRES_PASSWORD: 'backendTestPass'
+      ALLOW_IP_RANGE: '0.0.0.0/0'
+    ports:
+      - '5433:5432'
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/test_data
